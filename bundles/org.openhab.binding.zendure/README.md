@@ -27,8 +27,7 @@ _If your binding requires or supports general configuration settings, please cre
 _In this section, you should link to this file and provide some information about the options._
 _The file could e.g. look like:_
 
-
-```
+```text
 # Configuration for the Zendure Binding
 #
 # Default secret key for the pairing of the Zendure Thing.
