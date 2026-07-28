@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="org.openhab.binding.zendure-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
+	<repository>mvn:org.openhab.core.features.karaf/org.openhab.core.features.karaf.openhab-core/${ohc.version}/xml/features</repository>
+
+	<feature name="openhab-binding-zendure" version="${project.version}" description="Zendure OH Binding">
+		<feature>openhab-runtime-base</feature>
+		<!-- TODO needed? feature dependency="true">openhab.tp-gson</feature -->
+		<!-- bundle>mvn:org.jmdns/jmdns/${jmdns.version}</bundle -->
+		<bundle>mvn:org.openhab.addons.bundles/org.openhab.binding.zendure/${project.version}</bundle>
+	</feature>
+
+</features>

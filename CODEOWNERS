@@ -467,6 +467,7 @@
 /bundles/org.openhab.binding.yamahareceiver/ @zarusz
 /bundles/org.openhab.binding.yeelight/ @claell
 /bundles/org.openhab.binding.yioremote/ @miloit
+/bundles/org.openhab.binding.zendure/ @aploese
 /bundles/org.openhab.binding.zoneminder/ @mhilbush
 /bundles/org.openhab.binding.zwavejs/ @lsiepel
 /bundles/org.openhab.binding.zway/ @pathec

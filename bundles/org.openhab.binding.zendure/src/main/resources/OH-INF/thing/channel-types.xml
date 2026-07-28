@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zendure"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<channel-type id="Level_in_perCent">
+		<item-type>Number</item-type>
+		<label>Level_in_perCent.label</label>
+		<state readOnly="true" step="1" min="0" max="100" pattern="%f %"/>
+	</channel-type>
+
+	<channel-type id="On_Off">
+		<item-type>Switch</item-type>
+		<label>On_Off.label</label>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="Switch_On_Off">
+		<item-type>Switch</item-type>
+		<label>Switch_On_Off.label</label>
+		<state readOnly="false"/>
+	</channel-type>
+
+	<channel-type id="Power_in_W">
+		<item-type>Number:Power</item-type>
+		<!--unit>W</unit -->
+		<label>Power_in_W.label</label>
+		<state readOnly="true" pattern="%f %unit%"/>
+	</channel-type>
+
+	<channel-type id="Energy_in_kWh">
+		<item-type>Number:Energy</item-type>
+		<!--unit>kWh</unit -->
+		<label>Energy_in_kWh.label</label>
+		<state readOnly="true" pattern="%f %unit%"/>
+	</channel-type>
+
+	<channel-type id="NumberOf">
+		<item-type>Number</item-type>
+		<label>NumberOf.label</label>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="RemainingTime_in_min">
+		<item-type>Number</item-type>
+		<label>RemainingTime.label</label>
+	</channel-type>
+
+	<channel-type id="Speed_in_rpm">
+		<item-type>Number</item-type>
+		<label>Speed_in_rpm.label</label>
+		<state readOnly="true" pattern="%f min⁻1"/>
+	</channel-type>
+
+	<channel-type id="Temperature">
+		<item-type>Number:Temperature</item-type>
+		<label>Temperature.label</label>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<!--Inverter related channels -->
+	<channel-type id="Inverter_OffGrid_Mode">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_OffGrid#Mode.label</label>
+		<description>@text/channel.Inverter_OffGrid#Mode.description</description>
+		<state>
+			<options>
+				<option value="0">@text/channel.Inverter_OffGrid#Mode.NORMAL</option>
+				<option value="1">@text/channel.Inverter_OffGrid#Mode.ECO</option>
+				<option value="2">@text/channel.Inverter_OffGrid#Mode.OFF</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_GridStandard">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#GridStandard.label</label>
+		<description>@text/channel.Inverter_Mains#GridStandard.description</description>
+		<state>
+			<options>
+				<option value="0">@text/channel.Inverter_Mains#GridStandard.GERMANY</option>
+				<option value="1">@text/channel.Inverter_Mains#GridStandard.FRANCE</option>
+				<option value="2">@text/channel.Inverter_Mains#GridStandard.AUSTRIA</option>
+				<option value="3">@text/channel.Inverter_Mains#GridStandard.SWIZERLAND</option>
+				<option value="4">@text/channel.Inverter_Mains#GridStandard.BELGIUM</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_GridReverseFlowMode">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#GridReverseFlowMode.label</label>
+		<description>@text/channel.GridReverseFlowMode.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.Inverter_Mains#GridReverseFlowMode.DISABLED</option>
+				<option value="1">@text/channel.Inverter_Mains#GridReverseFlowMode.REVERSE_FLOW_ALLOWED</option>
+				<option value="2">@text/channel.Inverter_Mains#GridReverseFlowMode.REVERSE_FLOW_FORBIDDEN</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="BatteryPack_CalibrationTime">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#CalibrationTime.label</label>
+		<description>@text/channel.BatteryPack#CalibrationTime.description</description>
+		<state readOnly="true" pattern="%f min"/>
+	</channel-type>
+
+	<channel-type id="BatteryPack_PackState">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#packState.label</label>
+		<description>@text/channel.BatteryPack#packState.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.BatteryPack#PackState.STANDBY</option>
+				<option value="1">@text/channel.BatteryPack#PackState.CHARGING</option>
+				<option value="2">@text/channel.BatteryPack#PackState.DISCHARGING</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="BatteryPack_SocState">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#SocState.label</label>
+		<description>@text/channel.BatteryPack#SocState.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.BatteryPack#SocState.NORMAL</option>
+				<option value="1">@text/channel.BatteryPack#SocState.CHARGE_LIMIT_REACHED</option>
+				<option value="2">@text/channel.BatteryPack#SocState.DISCHARGE_LIMIT_REACHED</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="BatteryPack_DcState">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#DcState.label</label>
+		<description>@text/channel.BatteryPack#DcState.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.BatteryPack#DcState.STOPPED</option>
+				<option value="1">@text/channel.BatteryPack#DcState.BATTERY_INPUT</option>
+				<option value="2">@text/channel.BatteryPack#DcState.BATTERY_OUTPUT</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="BatteryPack_Bypass">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#Bypass.label</label>
+		<description>@text/channel.BatteryPack#Bypass.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.BatteryPack#Bypass.NO</option>
+				<option value="1">@text/channel.BatteryPack#Bypass.YES</option>
+				<option value="2">@text/channel.BatteryPack#Bypass.VALUE_2</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_AcState">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#AcState.label</label>
+		<description>@text/channel.Inverter_Mains#AcState.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.Inverter_Mains#AcState.STOPPED</option>
+				<option value="1">@text/channel.Inverter_Mains#AcState.GRID_CONNECTED</option>
+				<option value="2">@text/channel.Inverter_Mains#AcState.CHARGING</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_PhaseSwitch">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#PhaseSwitch.label</label>
+		<description>@text/channel.Inverter_Mains#PhaseSwitch.description</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_GridState">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#GridState.label</label>
+		<description>@text/channel.Inverter_Mains#GridState.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.Inverter_Mains#GridState.NO</option>
+				<option value="1">@text/channel.Inverter_Mains#GridState.YES</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Device_FaultLevel">
+		<item-type>Number</item-type>
+		<label>@text/channel.Device#FaultLevel.label</label>
+		<description>@text/channel.Device#FaultLevel.description</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="PV_State">
+		<item-type>Number</item-type>
+		<label>@text/channel.PV#State.label</label>
+		<description>@text/channel.PV#State.description</description>
+		<state readOnly="true">
+			<options>
+				<option value="0">@text/channel.PV#State.STOPPED</option>
+				<option value="1">@text/channel.PV#State.RUNNING</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Device_RSSI">
+		<item-type>Number</item-type>
+		<label>@text/channel.Device#RSSI.label</label>
+		<description>@text/channel.Device#RSSI.description</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="Device_IsError">
+		<item-type>Number</item-type>
+		<label>@text/channel.Device#IsError.label</label>
+		<description>@text/channel.Device#IsError.description</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-group-type id="Inverter_Mains">
+		<label>@text/channel-group.Inverter_Mains.label</label>
+		<channels>
+			<channel id="AcState" typeId="Inverter_Mains_AcState"/>
+			<channel id="GridState" typeId="Inverter_Mains_GridState"/>
+			<channel id="PhaseSwitch" typeId="Inverter_Mains_PhaseSwitch"/>
+			<channel id="GridStandard" typeId="Inverter_Mains_GridStandard"/>
+			<channel id="Power" typeId="Power_in_W">
+				<label>@text/channel.Inverter_Mains#Power.label</label>
+				<description>@text/channel.Inverter_Mains#Power.description</description>
+			</channel>
+			<channel id="PowerSetpoint" typeId="Power_in_W">
+				<label>@text/channel.Inverter_Mains#PowerSetpoint.label</label>
+				<description>@text/channel.Inverter_Mains#PowerSetpoint.description</description>
+			</channel>
+			<channel id="MaxPowerLimitIn" typeId="Power_in_W">
+				<label>@text/channel.Inverter_Mains#MaxPowerLimitIn.label</label>
+				<description>@text/channel.Inverter_Mains#MaxPowerLimitIn.description</description>
+			</channel>
+			<channel id="MaxPowerLimitOut" typeId="Power_in_W">
+				<label>@text/channel.Inverter_Mains#MaxPowerLimitOut.label</label>
+				<description>@text/channel.Inverter_Mains#MaxPowerLimitOut.description</description>
+			</channel>
+			<channel id="GridReverseFlowMode" typeId="Inverter_Mains_GridReverseFlowMode"/>
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="Inverter_OffGrid">
+		<label>@text/channel-group.Inverter_OffGrid.label</label>
+		<channels>
+			<channel id="Power" typeId="Power_in_W">
+				<label>@text/channel.Inverter_OffGrid#Power.label</label>
+				<description>@text/channel.Inverter_OffGrid#Power.label</description>
+			</channel>
+			<channel id="Mode" typeId="Inverter_OffGrid_Mode"/>
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="PV_2_Panels">
+		<label>@text/channel-group.PV_2_Panels.label</label>
+		<channels>
+			<channel id="State" typeId="PV_State"/>
+			<channel id="Power" typeId="Power_in_W">
+				<label>@text/channel.PV#Power.label</label>
+				<description>@text/channel.PV#Power.description</description>
+			</channel>
+			<channel id="PowerPanel_1" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_1.label</label>
+				<description>@text/channel.PV#PowerPanel_1.description</description>
+			</channel>
+			<channel id="PowerPanel_2" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_2.label</label>
+				<description>@text/channel.PV#PowerPanel_2.description</description>
+			</channel>
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="PV_4_Panels">
+		<label>@text/channel-group.PV_4_Panels.label</label>
+		<channels>
+			<channel id="State" typeId="PV_State"/>
+			<channel id="Power" typeId="Power_in_W">
+				<label>@text/channel.PV#Power.label</label>
+				<description>@text/channel.PV#Power.description</description>
+			</channel>
+			<channel id="PowerPanel_1" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_1.label</label>
+				<description>@text/channel.PV#PowerPanel_1.description</description>
+			</channel>
+			<channel id="PowerPanel_2" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_2.label</label>
+				<description>@text/channel.PV#PowerPanel_2.description</description>
+			</channel>
+			<channel id="PowerPanel_3" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_3.label</label>
+				<description>@text/channel.PV#PowerPanel_3.description</description>
+			</channel>
+			<channel id="PowerPanel_4" typeId="Power_in_W">
+				<label>@text/channel.PV#PowerPanel_4.label</label>
+				<description>@text/channel.PV#PowerPanel_4.description</description>
+			</channel>
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="BatteryPack">
+		<label>@text/channel-group.BatteryPack.label</label>
+		<channels>
+			<channel id="PackState" typeId="BatteryPack_PackState"/>
+			<channel id="Bypass" typeId="BatteryPack_Bypass"/>
+			<channel id="DcState" typeId="BatteryPack_DcState"/>
+			<channel id="SocState" typeId="BatteryPack_SocState"/>
+			<channel id="CalibrationTime" typeId="BatteryPack_CalibrationTime"/>
+			<channel id="Heating" typeId="On_Off">
+				<label>@text/channel.BatteryPack#Heating.label</label>
+				<description>@text/channel.BatteryPack#Heating.description</description>
+			</channel>
+			<channel id="Power" typeId="Power_in_W">
+				<label>@text/channel.BatteryPack#Power.label</label>
+				<description>@text/channel.BatteryPack#Power.description</description>
+			</channel>
+			<channel id="Capacity" typeId="Energy_in_kWh">
+				<label>@text/channel.BatteryPack#Capacity.label</label>
+				<description>@text/channel.BatteryPack#Capacity.description</description>
+			</channel>
+			<channel id="NumberOfBatteries" typeId="NumberOf">
+				<label>@text/channel.BatteryPack#NumberOfBatteries.label</label>
+				<description>@text/channel.BatteryPack#NumberOfBatteries.description</description>
+			</channel>
+			<channel id="StateOfCharge" typeId="Level_in_perCent">
+				<label>@text/channel.BatteryPack#StateOfCharge.label</label>
+				<description>@text/channel.BatteryPack#StateOfCharge.description</description>
+			</channel>
+			<channel id="ChargeLevelMax" typeId="Level_in_perCent">
+				<label>@text/channel.BatteryPack#hargeLevelMax.label</label>
+				<description>@text/channel.BatteryPack#ChargeLevelMax.description</description>
+			</channel>
+			<channel id="DischargeLevelMin" typeId="Level_in_perCent">
+				<label>@text/channel.BatteryPack#DischargeLevelMin.label</label>
+				<description>@text/channel.BatteryPack#DischargeLevelMin.description</description>
+			</channel>
+			<channel id="RemainingDischargeTime" typeId="RemainingTime_in_min">
+				<label>@text/channel.BatteryPack#RemainingDischargeTime.label</label>
+				<description>@text/channel.BatteryPack#RemainingDischargeTime.description</description>
+			</channel>
+		</channels>
+	</channel-group-type>
+
+</thing:thing-descriptions>
