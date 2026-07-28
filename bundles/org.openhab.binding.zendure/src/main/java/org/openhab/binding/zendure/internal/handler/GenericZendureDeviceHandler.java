@@ -602,7 +602,7 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
                     capacity = 2.88;
                 }
                 default -> throw new RuntimeException(
-                        "Cant decode serialnumber pleas report error with SN and modelname and capacity: \"" + sn
+                        "Cant decode serialnumber please report error with SN and modelname and capacity: \"" + sn
                                 + '\"');
             }
         } else {
