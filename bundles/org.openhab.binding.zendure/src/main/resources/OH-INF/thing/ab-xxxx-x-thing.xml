@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zendure"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="ab2000x">
+		<label>@text/thing-type.zendure.ab2000x.label</label>
+		<description>@text/thing-type.zendure.ab2000x.description</description>
+
+
+		<channels>
+
+			<!-- PV related channels -->
+			<channel id="PvPower" typeId="PvPower"/>
+			<channel id="PvPowerPanel_1" typeId="PvPowerPanel_1"/>
+			<channel id="PvPowerPanel_2" typeId="PvPowerPanel_2"/>
+
+			<!--Inverter related channels -->
+			<channel id="InverterPower" typeId="InverterPower"/>
+			<channel id="InverterDesiredPower" typeId="InverterDesiredPower"/>
+
+			<!--Batterie pack related channels -->
+			<channel id="BatteryPackHeating" typeId="BatteryPackHeating"/>
+			<channel id="BatteryPackPower" typeId="BatteryPackPower"/>
+			<channel id="BatteryPackCapacity" typeId="BatteryPackCapacity"/>
+			<channel id="NumberOfBatteriesInPack" typeId="NumberOfBatteriesInPack"/>
+			<channel id="BatteryPackStateOfCharge" typeId="BatteryPackStateOfCharge"/>
+			<channel id="BatteryPackChargeLevelMax" typeId="BatteryPackChargeLevelMax"/>
+			<channel id="BatteryPackDischargeLevelMin" typeId="BatteryPackDischargeLevelMin"/>
+
+			<channel id="BatteryPackRemainingDischargeTime" typeId="BatteryPackRemainingDischargeTime"/>
+			<channel id="DeviceTemperature" typeId="DeviceTemperature"/>
+			<channel id="GridStandard" typeId="GridStandard"/>
+			<channel id="DeviceLampSwitch" typeId="DeviceLampSwitch"/>
+			<channel id="SmartMode" typeId="SmartMode"/>
+			<channel id="RSSI" typeId="RSSI"/>
+			<channel id="InverterMaxPowerLimitIn" typeId="InverterMaxPowerLimitIn"/>
+			<channel id="InverterMaxPowerLimitOut" typeId="InverterMaxPowerLimitOut"/>
+			<channel id="GridReverseFlowMode" typeId="GridReverseFlowMode"/>
+			<channel id="DeviceState" typeId="DeviceState"/>
+
+		</channels>
+
+		<properties>
+			<!-- set if discovered by mDNS -->
+			<property name="Zendure">Unknown</property>
+		</properties>
+
+		<representation-property>serialNumber</representation-property>
+
+		<config-description>
+			<parameter name="deviceIp" type="text">
+				<label>Device IP Address</label>
+				<description>IP Address of the Zendure json api (e.g. http://solarflow-800)</description>
+				<default>http://solarflow-800</default>
+				<required>true</required>
+			</parameter>
+			<parameter name="serialNumber" type="text">
+				<label>Serial number</label>
+				<description>The serial number of the device</description>
+				<required>true</required>
+			</parameter>
+			<parameter name="refreshInterval" type="integer" min="1">
+				<label>Refresh Interval</label>
+				<description>States how often a refresh shall occur (in s).</description>
+				<default>10</default>
+				<required>true</required>
+			</parameter>
+			<parameter name="port" type="integer">
+				<label>Port</label>
+				<description>The Port to use default is 80 (http).</description>
+				<default>80</default>
+				<required>true</required>
+				<advanced>true</advanced>
+			</parameter>
+			<parameter name="jsonReadPropertyPath" type="text">
+				<label>Read property path (JSON).</label>
+				<description>The path to get the property values.</description>
+				<default>/properties/report</default>
+				<required>true</required>
+				<advanced>true</advanced>
+			</parameter>
+			<parameter name="jsonWriteProperyPath" type="text">
+				<label>Write property path (JSON).</label>
+				<description>The path to set the property values.</description>
+				<default>/properties/write</default>
+				<required>true</required>
+				<advanced>true</advanced>
+			</parameter>
+		</config-description>
+
+	</thing-type>
+
+</thing:thing-descriptions>

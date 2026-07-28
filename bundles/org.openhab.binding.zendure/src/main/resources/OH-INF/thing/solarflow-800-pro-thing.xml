@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zendure"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<channel-group-type id="Device_SolarFlow_800_Pro">
+		<label>@text/channel-group-type.Device_SolarFlow_800.label</label>
+		<channels>
+			<channel id="FaultLevel" typeId="Device_FaultLevel"/>
+			<channel id="IsError" typeId="Device_IsError"/>
+			<channel id="Temperature" typeId="Temperature">
+				<label>@text/channel.Device#Temperature.label</label>
+				<description>@text/channel.Device#Temperature.description</description>
+			</channel>
+			<channel id="LampSwitch" typeId="Switch_On_Off">
+				<label>@text/channel.Device#LampSwitch.label</label>
+				<description>@text/channel.Device#LampSwitch.description</description>
+			</channel>
+			<channel id="SmartMode" typeId="Switch_On_Off">
+				<label>@text/channel.Device#SmartMode.label</label>
+				<description>@text/channel.Device#SmartMode.description</description>
+			</channel>
+			<channel id="FanMode" typeId="On_Off">
+				<label>@text/channel.Device#DeviceFanMode.label</label>
+				<description>@text/channel.Device#DeviceFanMode.description</description>
+			</channel>
+			<channel id="FanSpeed" typeId="Speed_in_rpm">
+				<label>@text/channel.Device#DeviceFanSpeed.label</label>
+				<description>@text/channel.Device#DeviceFanSpeed.description</description>
+			</channel>
+			<channel id="RSSI" typeId="Device_RSSI"/>
+		</channels>
+	</channel-group-type>
+
+	<bridge-type id="solarflow-800-pro">
+		<label>@text/thing-type.zendure.solarflow-800-pro.label</label>
+		<description>@text/thing-type.zendure.solarflow-800-pro.description</description>
+
+
+		<channel-groups>
+			<channel-group id="PV" typeId="PV_4_Panels"/>
+			<channel-group id="BatteryPack" typeId="BatteryPack"/>
+			<channel-group id="Inverter_Mains" typeId="Inverter_Mains"/>
+			<channel-group id="Inverter_OffGrid" typeId="Inverter_OffGrid"/>
+			<channel-group id="Device" typeId="Device_SolarFlow_800_Pro"/>
+		</channel-groups>
+
+
+		<properties>
+			<!-- set if discovered by mDNS -->
+			<property name="Zendure">Unknown</property>
+		</properties>
+
+		<representation-property>serialNumber</representation-property>
+
+		<config-description>
+			<parameter name="deviceIp" type="text" required="true">
+				<label>Device IP Address</label>
+				<description>IP Address of the Zendure json api (e.g. solarflow-800-pro)</description>
+				<default>solarflow-800-pro</default>
+			</parameter>
+			<parameter name="serialNumber" type="text" required="true">
+				<label>Serial number</label>
+				<description>The serial number of the device</description>
+			</parameter>
+			<parameter name="refreshInterval" type="integer" min="1" required="true">
+				<label>Refresh Interval</label>
+				<description>States how often a refresh shall occur (in s).</description>
+				<default>10</default>
+			</parameter>
+			<parameter name="port" type="integer" required="true">
+				<label>Port</label>
+				<description>The Port to use default is 80 (http).</description>
+				<default>80</default>
+				<advanced>true</advanced>
+			</parameter>
+			<parameter name="jsonReadPropertyPath" type="text" required="true">
+				<label>Read property path (JSON).</label>
+				<description>The path to get the property values.</description>
+				<default>/properties/report</default>
+				<advanced>true</advanced>
+			</parameter>
+			<parameter name="jsonWriteProperyPath" type="text" required="true">
+				<label>Write property path (JSON).</label>
+				<description>The path to set the property values.</description>
+				<default>/properties/write</default>
+				<advanced>true</advanced>
+			</parameter>
+		</config-description>
+
+	</bridge-type>
+
+</thing:thing-descriptions>
