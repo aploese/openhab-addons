@@ -121,8 +121,8 @@
 
 	<channel-type id="Inverter_Mains_AcCouplingState">
 		<item-type>Number</item-type>
-		<label>@text/channel.Inverter_Mains#GAcCouplingState.label</label>
-		<description>@text/channel.AcCouplingState.description</description>
+		<label>@text/channel.Inverter_Mains#AcCouplingState.label</label>
+		<description>@text/channel.Inverter_Mains#AcCouplingState.description</description>
 		<state readOnly="true">
 		</state>
 	</channel-type>
