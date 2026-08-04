@@ -73,6 +73,19 @@
 		</state>
 	</channel-type>
 
+	<channel-type id="Inverter_OffGrid_State">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_OffGrid#State.label</label>
+		<description>@text/channel.Inverter_OffGrid#State.description</description>
+		<state>
+			<options>
+				<option value="0">@text/channel.Inverter_OffGrid#State.UNKNOWN_0</option>
+				<option value="1">@text/channel.Inverter_OffGrid#State.UNKNOWN_1</option>
+				<option value="2">@text/channel.Inverter_OffGrid#State.UNKNOWN_2</option>
+			</options>
+		</state>
+	</channel-type>
+
 	<channel-type id="Inverter_Mains_GridStandard">
 		<item-type>Number</item-type>
 		<label>@text/channel.Inverter_Mains#GridStandard.label</label>
@@ -83,7 +96,12 @@
 				<option value="1">@text/channel.Inverter_Mains#GridStandard.FRANCE</option>
 				<option value="2">@text/channel.Inverter_Mains#GridStandard.AUSTRIA</option>
 				<option value="3">@text/channel.Inverter_Mains#GridStandard.SWIZERLAND</option>
-				<option value="4">@text/channel.Inverter_Mains#GridStandard.BELGIUM</option>
+				<option value="4">@text/channel.Inverter_Mains#GridStandard.NETHERLANDS</option>
+				<option value="5">@text/channel.Inverter_Mains#GridStandard.SPAIN</option>
+				<option value="6">@text/channel.Inverter_Mains#GridStandard.BELGIUM</option>
+				<option value="7">@text/channel.Inverter_Mains#GridStandard.GREECE</option>
+				<option value="8">@text/channel.Inverter_Mains#GridStandard.DENMARK</option>
+				<option value="9">@text/channel.Inverter_Mains#GridStandard.ITALY</option>
 			</options>
 		</state>
 	</channel-type>
@@ -98,6 +116,14 @@
 				<option value="1">@text/channel.Inverter_Mains#GridReverseFlowMode.REVERSE_FLOW_ALLOWED</option>
 				<option value="2">@text/channel.Inverter_Mains#GridReverseFlowMode.REVERSE_FLOW_FORBIDDEN</option>
 			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="Inverter_Mains_AcCouplingState">
+		<item-type>Number</item-type>
+		<label>@text/channel.Inverter_Mains#GAcCouplingState.label</label>
+		<description>@text/channel.AcCouplingState.description</description>
+		<state readOnly="true">
 		</state>
 	</channel-type>
 
@@ -218,6 +244,13 @@
 		<state readOnly="true"/>
 	</channel-type>
 
+	<channel-type id="Device_DryNodeState">
+		<item-type>Number</item-type>
+		<label>@text/channel.Device#DryNodeState.label</label>
+		<description>@text/channel.Device#DryNodeState.description</description>
+		<state readOnly="true"/>
+	</channel-type>
+
 	<channel-type id="Device_IsError">
 		<item-type>Number</item-type>
 		<label>@text/channel.Device#IsError.label</label>
@@ -249,6 +282,7 @@
 				<description>@text/channel.Inverter_Mains#MaxPowerLimitOut.description</description>
 			</channel>
 			<channel id="GridReverseFlowMode" typeId="Inverter_Mains_GridReverseFlowMode"/>
+			<channel id="AcCouplingState" typeId="Inverter_Mains_AcCouplingState"/>
 		</channels>
 	</channel-group-type>
 
@@ -260,6 +294,7 @@
 				<description>@text/channel.Inverter_OffGrid#Power.label</description>
 			</channel>
 			<channel id="Mode" typeId="Inverter_OffGrid_Mode"/>
+			<channel id="State" typeId="Inverter_OffGrid_State"/>
 		</channels>
 	</channel-group-type>
 

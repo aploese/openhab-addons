@@ -40,15 +40,11 @@ import org.slf4j.LoggerFactory;
 public class ZendureHandlerFactory extends BaseThingHandlerFactory {
 
     private final Logger logger = LoggerFactory.getLogger(ZendureHandlerFactory.class);
-    // TODO use??? private HttpClientFactory httpClientFactory;
     private ZendureTranslationProvider translationProvider;
 
     @Activate
-    public ZendureHandlerFactory(/* @Reference HttpClientFactory httpClientFactory, */
-            @Reference ZendureTranslationProvider translationProvider) {
+    public ZendureHandlerFactory(@Reference ZendureTranslationProvider translationProvider) {
         this.translationProvider = translationProvider;
-        // TODO USE this??
-        // this.httpClientFactory = httpClientFactory;
     }
 
     @Override

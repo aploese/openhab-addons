@@ -22,6 +22,7 @@
 				<description>@text/channel.Device#SmartMode.description</description>
 			</channel>
 			<channel id="RSSI" typeId="Device_RSSI"/>
+			<channel id="DryNodeState" typeId="Device_DryNodeState"/>
 		</channels>
 	</channel-group-type>
 
