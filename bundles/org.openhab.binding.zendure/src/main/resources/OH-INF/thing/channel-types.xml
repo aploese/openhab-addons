@@ -160,6 +160,14 @@
 		</state>
 	</channel-type>
 
+	<channel-type id="BatteryPack_SocCompSwitch">
+		<item-type>Number</item-type>
+		<label>@text/channel.BatteryPack#SocCompSwitch.label</label>
+		<description>@text/channel.BatteryPack#SocCompSwitch.description</description>
+		<state readOnly="true">
+		</state>
+	</channel-type>
+
 	<channel-type id="BatteryPack_DcState">
 		<item-type>Number</item-type>
 		<label>@text/channel.BatteryPack#DcState.label</label>
@@ -351,6 +359,7 @@
 			<channel id="Bypass" typeId="BatteryPack_Bypass"/>
 			<channel id="DcState" typeId="BatteryPack_DcState"/>
 			<channel id="SocState" typeId="BatteryPack_SocState"/>
+			<channel id="socCompSwitch" typeId="BatteryPack_SocCompSwitch"/>
 			<channel id="CalibrationTime" typeId="BatteryPack_CalibrationTime"/>
 			<channel id="Heating" typeId="On_Off">
 				<label>@text/channel.BatteryPack#Heating.label</label>

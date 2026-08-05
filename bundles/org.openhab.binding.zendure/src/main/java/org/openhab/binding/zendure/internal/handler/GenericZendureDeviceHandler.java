@@ -112,6 +112,7 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
     private final ChannelUID batteryPackDischargeLevelMinUID;
     private final ChannelUID batteryPackSocStateUID;
     private final ChannelUID batteryPackCalTimeUID;
+    private final ChannelUID batteryPackSocCompSwitch;
 
     private final ChannelUID deviceIsErrorUID;
     private final ChannelUID deviceRssiUID;
@@ -177,6 +178,8 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
                 Channels.BatteryPack.SOC_STATE);
         batteryPackCalTimeUID = new ChannelUID(getThing().getUID(), Channels.BatteryPack.GROUP_BATTERY_PACK,
                 Channels.BatteryPack.CALIBRATION_TIME);
+        batteryPackSocCompSwitch = new ChannelUID(getThing().getUID(), Channels.BatteryPack.GROUP_BATTERY_PACK,
+                Channels.BatteryPack.SOC_COMP_SWITCH);
 
         deviceTemperatureUID = new ChannelUID(getThing().getUID(), Channels.Device.GROUP_DEVICE,
                 Channels.Device.TEMPERATURE);
@@ -432,6 +435,7 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
             public static final String REMAINING_DISCHARGE_TIME = "RemainingDischargeTime";
             public static final String PACK_STATE = "PackState";
             public static final String SOC_STATE = "SocState";
+            public static final String SOC_COMP_SWITCH = "socCompSwitch";
             public static final String CALIBRATION_TIME = "CalibrationTime";
         }
 
@@ -828,7 +832,6 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
                     switch (bypass) {
                         case BatteryPackBypass.VALUE_NO -> updateState(batteryPackBypassUID, BatteryPackBypass.NO);
                         case BatteryPackBypass.VALUE_YES -> updateState(batteryPackBypassUID, BatteryPackBypass.YES);
-
                         case BatteryPackBypass.VALUE_VALUE_2 -> {
                             updateState(batteryPackBypassUID, BatteryPackBypass.VALUE_2);
                             logger.info("Received pass=2 from {} !", getThing().getUID());
@@ -858,6 +861,7 @@ public class GenericZendureDeviceHandler extends BaseBridgeHandler {
                                 SocStatus.VALUE_NOT_CALIBRATING, SocStatus.VALUE_CALIBRATING);
                     }
                 }
+                case "socCompSwitch" -> updateState(batteryPackSocCompSwitch, new DecimalType(reader.nextInt()));
                 case "hyperTmp" -> updateState(deviceTemperatureUID, new DecimalType(reader.nextInt() / 100.0));
                 case "gridOffPower" -> updateState(inverterOffGridPowerUID, new DecimalType(reader.nextInt()));
                 // 0: Stopped, 1: Battery input, 2: Battery output,
